@@ -1,0 +1,9 @@
+name "CarmaTools installer"
+version 1
+
+treeMove "CarmaTools" to "$temp"
+
+run "CarmaTools_installer.ms"
+drop "CarmaTools_installer.ms"
+
+clear temp
