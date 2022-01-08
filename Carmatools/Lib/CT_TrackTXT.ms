@@ -279,7 +279,7 @@ if txt_name != undefined do
 					writeline #(funk_sequence_type_stings[mat.sequence_mode]) "// Sequence type\n" txt_file indent:2
 					if mat.sequence_mode == 5 then (
 						textureBitTypes = #("B","BV","V","VB")
-						writeLine #(textureBitTypes[funk.sequence_textureBits])
+						writeLine #(textureBitTypes[mat.sequence_textureBits]) "// TextureBitType\n" txt_file indent:2
 					)
 					else (
 						writeline #(mat.sequence_framerate) "// framerate\n" txt_file indent:2
@@ -311,62 +311,65 @@ if txt_name != undefined do
 			for i=1 to rootnode.grooves.count do
 			(
 				groove = rootnode.grooves[i]
-				writeLine #(groove.name) "// Actor Name\n" txt_file
-				lollipops=#("none","xlollipop","ylollipop","zlollipop")
-				writeLine #(lollipops[groove.lollipop]) "// Lollipop\n" txt_file
-				
-				if groove.distance == 1 do writeLine #("Distance") "// Rendering distance\n" txt_file
-				if groove.distance  == 2 do writeLine #("Constant") "// Rendering distance\n" txt_file
-				
-				path_types = #("No path","Straight","Circular")
-				path_modes = #("Linear", "Harmonic", "Flash","Absolute")
-				writeLine #(path_types[groove.path_type]) "// Path Type\n" txt_file
-				if groove.path_type != 1 do
+				if groove != undefined then
 				(
-					writeLine #(path_modes[groove.path_mode]) "// Path Mode\n" txt_file
-					writeLine #(groove.path_centre.x,groove.path_centre.z,-groove.path_centre.y) "// Centre\n" txt_file
-					writeLine #(groove.path_speed) "// Speed\n" txt_file
-					if groove.path_type  == 2 do
+					writeLine #(groove.name) "// Actor Name\n" txt_file
+					lollipops=#("none","xlollipop","ylollipop","zlollipop")
+					writeLine #(lollipops[groove.lollipop]) "// Lollipop\n" txt_file
+					
+					if groove.distance == 1 do writeLine #("Distance") "// Rendering distance\n" txt_file
+					if groove.distance  == 2 do writeLine #("Constant") "// Rendering distance\n" txt_file
+					
+					path_types = #("No path","Straight","Circular")
+					path_modes = #("Linear", "Harmonic", "Flash","Absolute")
+					writeLine #(path_types[groove.path_type]) "// Path Type\n" txt_file
+					if groove.path_type != 1 do
 					(
-						writeLine #(groove.path_extent.x,groove.path_extent.z,-groove.path_extent.y) "// Extent\n" txt_file
+						writeLine #(path_modes[groove.path_mode]) "// Path Mode\n" txt_file
+						writeLine #(groove.path_centre.x,groove.path_centre.z,-groove.path_centre.y) "// Centre\n" txt_file
+						writeLine #(groove.path_speed) "// Speed\n" txt_file
+						if groove.path_type  == 2 do
+						(
+							writeLine #(groove.path_extent.x,groove.path_extent.z,-groove.path_extent.y) "// Extent\n" txt_file
+						)
+						if groove.path_type  == 3 do
+						(
+							writeLine #(groove.path_radius) "// Radius\n" txt_file
+							path_axiss = #("x","y","z")
+							writeLine #(path_axiss[groove.path_axis]) "// Axis\n" txt_file
+						)
 					)
-					if groove.path_type  == 3 do
+					animation_types = #("None","Spin","Rock","Shear","Throb")
+					animation_modes = #("Linear","Harmonic","Flash","Continuous","Absolute","Controlled")
+					animation_axis = #("x","y","z")
+					writeLine #(animation_types[groove.animation_type]) "// Animation Type\n" txt_file
+					if groove.animation_type != 1 do
 					(
-						writeLine #(groove.path_radius) "// Radius\n" txt_file
-						path_axiss = #("x","y","z")
-						writeLine #(path_axiss[groove.path_axis]) "// Axis\n" txt_file
+						writeLine #(animation_modes[groove.animation_mode]) "// Animation Mode\n" txt_file
+						if groove.animation_type  == 2 do 
+						(
+							writeLine #(groove.animation_speed) "// Speed\n" txt_file
+							writeLine #(groove.animation_centre.x,groove.animation_centre.z,-groove.animation_centre.y) "// Centre\n" txt_file
+							writeLine #(animation_axis[groove.animation_axis]) "// Axis\n" txt_file
+						)
+						if groove.animation_type  == 3 do 
+						(
+							writeLine #(groove.animation_speed) "// Speed\n" txt_file
+							writeLine #(groove.animation_centre.x,groove.animation_centre.z,-groove.animation_centre.y) "// Centre\n" txt_file
+							writeLine #(animation_axis[groove.animation_axis]) "// Axis\n" txt_file
+							writeLine #(groove.animation_angle) "// Angle\n" txt_file
+						)
+						if groove.animation_type  == 4 or groove.animation_type == 5 do 
+						(
+							writeLine #(groove.animation_speed,groove.animation_speed,groove.animation_speed) "// Speed\n" txt_file
+							writeLine #(groove.animation_centre.x,groove.animation_centre.z,-groove.animation_centre.y) "// Centre\n" txt_file
+							writeLine #(groove.animation_extent.x,groove.animation_extent.z,-groove.animation_extent.y) "// Extent\n" txt_file
+						)
 					)
-				)
-				animation_types = #("None","Spin","Rock","Shear","Throb")
-				animation_modes = #("Linear","Harmonic","Flash","Continuous","Absolute","Controlled")
-				animation_axis = #("x","y","z")
-				writeLine #(animation_types[groove.animation_type]) "// Animation Type\n" txt_file
-				if groove.animation_type != 1 do
-				(
-					writeLine #(animation_modes[groove.animation_mode]) "// Animation Mode\n" txt_file
-					if groove.animation_type  == 2 do 
+					if i != rootnode.grooves.count do
 					(
-						writeLine #(groove.animation_speed) "// Speed\n" txt_file
-						writeLine #(groove.animation_centre.x,groove.animation_centre.z,-groove.animation_centre.y) "// Centre\n" txt_file
-						writeLine #(animation_axis[groove.animation_axis]) "// Axis\n" txt_file
+						format "\nNEXT GROOVE\n" to:txt_file
 					)
-					if groove.animation_type  == 3 do 
-					(
-						writeLine #(groove.animation_speed) "// Speed\n" txt_file
-						writeLine #(groove.animation_centre.x,groove.animation_centre.z,-groove.animation_centre.y) "// Centre\n" txt_file
-						writeLine #(animation_axis[groove.animation_axis]) "// Axis\n" txt_file
-						writeLine #(groove.animation_angle) "// Angle\n" txt_file
-					)
-					if groove.animation_type  == 4 or groove.animation_type == 5 do 
-					(
-						writeLine #(groove.animation_speed,groove.animation_speed,groove.animation_speed) "// Speed\n" txt_file
-						writeLine #(groove.animation_centre.x,groove.animation_centre.z,-groove.animation_centre.y) "// Centre\n" txt_file
-						writeLine #(groove.animation_extent.x,groove.animation_extent.z,-groove.animation_extent.y) "// Extent\n" txt_file
-					)
-				)
-				if i != rootnode.grooves.count do
-				(
-					format "\nNEXT GROOVE\n" to:txt_file
 				)
 			)
 		)

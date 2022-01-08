@@ -38,7 +38,7 @@ attribid:#(0x3cad4839, 0x5d42437a)
 --try destroydialog ShrapnelSetup catch()
 rollout ShrapnelSetup "Shrapnel Setup"
 (
-	local conn = rootnode.current_connotations
+	local conn = try rootnode.current_connotations catch()
 	local shrapnel = undefined
 	group "Shrapnels in Smashable:" (
 		dotNetControl shrapnelList "System.Windows.Forms.ListView" width:(widthF) height:164

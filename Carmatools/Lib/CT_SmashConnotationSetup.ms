@@ -39,7 +39,7 @@ attribid:#(0x67174092, 0x48fc38bb)
 
 --try destroydialog connotationsSetup catch()
 rollout connotationsSetup "Connotations Main" (
-	local conn = rootnode.current_connotations
+	local conn = try rootnode.current_connotations catch undefined
 	local placementPos = 4
 	
 	groupbox connSounds "Sounds:" width:(width-8) height:104 pos:[4,placementPos]

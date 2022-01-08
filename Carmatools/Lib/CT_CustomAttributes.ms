@@ -1,3 +1,27 @@
+--global variables
+
+--script links for loading external scripts
+LibDir =  scriptspath+"\\Carma_tools\\Lib\\"
+
+filein (libDir + "CT_UIValues.ms")
+
+--load functions
+filein (libDir + "CT_Functions.ms")
+
+filein (libDir + "CT_FunkSetup.ms")
+filein (libDir + "CT_GrooveSetup.ms")
+
+--smashable setup scripts
+filein (libDir + "CT_SmashConnotationSetup.ms")
+filein (libDir + "CT_SmashConnotationsEdit.ms")
+filein (libDir + "CT_SmashShrapnelSetup.ms")
+filein (libDir + "CT_SmashExplosionSetup.ms")
+filein (libDir + "CT_SmashSideEffectsSetup.ms")
+filein (libDir + "CT_SmashNoncarActivationSetup.ms")
+filein (libDir + "CT_TrackSmashableSetup.ms")
+filein (libDir + "CT_SmashConnotationSetup.ms")
+filein (libDir + "CT_SmashConnotationsEdit.ms")
+
 global actorAttributes = attributes actorProperties
 attribID:#(0xaf709ca, 0x84ff0730)
 (

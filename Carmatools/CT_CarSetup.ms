@@ -1,34 +1,11 @@
 --global variables
 
 --script links for loading external scripts
-scriptDir =  scriptspath+"\\Carma_tools\\"
---scriptDir =  "C:\\Users\\harms\\Google Drive\\Carmatools 2020\\Carma_Tools\\"
---scriptDir =  "C:\\Users\\909754\\Google Drive\\Carmatools 2020\\Carma_Tools\\"
-LibDir = scriptDir+"Lib\\"
-
-filein (libDir + "CT_UIValues.ms")
-
---load functions
-filein (libDir + "CT_Functions.ms")
+LibDir =  scriptspath+"\\Carma_tools\\Lib\\"
 
 --load custom Attributes
 filein (libDir + "CT_customAttributes.ms")
 filein (libDir + "CT_carCustomAttributes.ms")
-custAttributes.add rootnode carGeneralAttributes
-
-filein (libDir + "CT_FunkSetup.ms")
-filein (libDir + "CT_GrooveSetup.ms")
-
---smashable setup scripts
-filein (libDir + "CT_SmashConnotationSetup.ms")
-filein (libDir + "CT_SmashConnotationsEdit.ms")
-filein (libDir + "CT_SmashShrapnelSetup.ms")
-filein (libDir + "CT_SmashExplosionSetup.ms")
-filein (libDir + "CT_SmashSideEffectsSetup.ms")
-filein (libDir + "CT_SmashNoncarActivationSetup.ms")
-filein (libDir + "CT_TrackSmashableSetup.ms")
-filein (libDir + "CT_SmashConnotationSetup.ms")
-filein (libDir + "CT_SmashConnotationsEdit.ms")
 
 --car setup scripts
 filein (libDir + "CT_carGlobalSetup.ms")
@@ -38,6 +15,7 @@ filein (libDir + "CT_carDamageInfo.ms")
 filein (libDir + "CT_carWamSetup.ms")
 filein (libDir + "CT_carQuickSetup.ms")
 
+custAttributes.add rootnode carGeneralAttributes
 (	
 	global carSetup 
 	try(destroyDialog carSetup )catch()

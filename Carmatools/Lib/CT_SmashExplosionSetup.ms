@@ -28,7 +28,7 @@ attribid:#(0x258a8419, 0x10c411b0)
 --try destroydialog explosionSetup catch()
 rollout explosionSetup "Explosion Setup"
 (
-	local conn = rootnode.current_connotations
+	local conn = try rootnode.current_connotations catch undefined
 	local explosion = undefined
 	group "Explosions in Smashable:" (
 		dotNetControl explosionList "System.Windows.Forms.ListView" width:(widthF) height:164

@@ -22,7 +22,7 @@ attribid:#(0x7347c940, 0x77470657)
 rollout sideEffectSetup "Side Effect Properties" 
 (
 	local count = 0
-	local conn = rootnode.current_connotations
+	local conn = try rootnode.current_connotations catch undefined
 	local sideEffect = undefined
 	group "Side Effects in Smashable:" (
 		dotNetControl sideEffectList "System.Windows.Forms.ListView" width:(widthF) height:164

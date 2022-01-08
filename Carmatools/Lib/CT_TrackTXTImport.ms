@@ -1,3 +1,6 @@
+--load custom Attributes
+fileIn (libDir + "CT_trackCustomAttributes.ms")
+
 custAttributes.add rootnode track_general_CA
 fn parseTrackTxtFile txtFile =
 (

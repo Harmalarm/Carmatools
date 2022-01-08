@@ -26,7 +26,7 @@ attribid:#(0x1afadfc7, 0x37c307d2)
 --try destroydialog noncarActivationSetup catch ()
 rollout noncarActivationSetup "Noncar Activation Setup:"
 (
-	local conn = rootnode.current_connotations
+	local conn = try rootnode.current_connotations catch undefined
 	local noncar = undefined
 	group "Noncar Activations in Smashable:" (
 		dotNetControl noncarList "System.Windows.Forms.ListView" width:(widthF) height:164

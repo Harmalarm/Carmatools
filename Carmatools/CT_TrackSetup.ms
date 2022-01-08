@@ -2,18 +2,13 @@
 global renameNode = undefined
 
 --script links for loading external scripts
-scriptDir =  scriptspath+"\\Carma_tools\\"
---scriptDir =  "C:\\Users\\harms\\Google Drive\\Carmatools 2020\\Carma_Tools\\"
---scriptDir =  "C:\\Users\\909754\\Google Drive\\Carmatools 2020\\Carma_Tools\\"
+LibDir =  scriptspath+"\\Carma_tools\\Lib\\"
 
-LibDir = scriptDir+"Lib\\"
-
-filein (libDir + "CT_UIValues.ms")
-filein (libDir + "CT_Functions.ms")
-
+--load custom Attributes
 filein (libDir + "CT_customAttributes.ms")
-filein (libDir + "CT_TrackCustomAttributes.ms")
+fileIn (libDir + "CT_trackCustomAttributes.ms")
 
+--track setup scripts
 filein (libDir + "CT_TrackEnvironmentSetup.ms")
 fileIn (libDir + "CT_TrackMinimapSetup.ms")
 fileIn (libDir + "CT_TrackGeneralSetup.ms")
@@ -22,20 +17,8 @@ fileIn (libDir + "CT_TrackSpecialEffectsVolumeSetup.ms")
 fileIn (libDir + "CT_TrackMaterialModifierSetup.ms")
 fileIn (libDir + "CT_TrackgameSetup.ms")
 
-fileIn (libDir + "CT_GrooveSetup.ms")
-fileIn (libDir + "CT_FunkSetup.ms")
-
-fileIn (libDir + "CT_SmashConnotationSetup.ms")
-fileIn (libDir + "CT_SmashConnotationsEdit.ms")
-fileIn (libDir + "CT_SmashShrapnelSetup.ms")
-fileIn (libDir + "CT_SmashExplosionSetup.ms")
-fileIn (libDir + "CT_SmashSideEffectsSetup.ms")
-fileIn (libDir + "CT_SmashNoncarActivationSetup.ms")
-fileIn (libDir + "CT_TrackSmashableSetup.ms")
-
-
-
 custAttributes.add rootnode track_general_CA
+
 (	
 	global trackSetup 
 	try(destroyDialog trackSetup )catch()

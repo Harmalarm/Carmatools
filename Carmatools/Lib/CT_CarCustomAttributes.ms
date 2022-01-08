@@ -1,4 +1,5 @@
-carGeneralAttributes = attributes carGeneralData attribID:#(0x4355c32d, 0x76c6fa01) (
+carGeneralAttributes = attributes carGeneralData attribID:#(0x4355c32d, 0x76c6fa01) 
+(
 	parameters carGeneralParameters (
 		versionType type:#integer default:2
 		isFemale type:#boolean default:false

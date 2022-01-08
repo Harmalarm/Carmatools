@@ -1,3 +1,6 @@
+--load custom Attributes
+filein (libDir + "CT_carCustomAttributes.ms")
+
 custAttributes.add rootnode carGeneralAttributes
 fn parseCarTxtFile txtFile = (
 --txtFile = getOpenFileName types:"Txt(*.txt)|*.txt" (
