@@ -19,8 +19,8 @@ fn fwritefloat bf val = (
 		val = bit.floatAsInt val
 		val = bit.intashex val
 		while val.count < 8 do val = "0" + val
-		s = (substring val 7 2) + (substring val 5 2) + (substring val 3 2) + (substring val 1 2)
-		val = bit.intAsFloat (bit.hexasint s)
+		s = ( substring val 7 2 ) + ( substring val 5 2 ) + ( substring val 3 2 ) + ( substring val 1 2 )
+		val = bit.intAsFloat ( bit.hexasint s )
 		writefloat bf val
 	)
 )
@@ -30,7 +30,7 @@ fn hasattribute node atribName = (
 	if node != undefined then (
 		custAtribCount = custattributes.count node
 		if custAtribCount > 0 then (
-			for i=1 to custAtribCount do (
+			for i = 1 to custAtribCount do (
 				ca = custattributes.get node i
 				if ca.name == atribName then (
 					atribCheck = true
@@ -41,15 +41,15 @@ fn hasattribute node atribName = (
 	atribCheck
 )
 
-scriptpath = pathConfig.GetDir #scripts+"\\Carma_Tools\\lib"
+scriptpath = pathConfig.GetDir #scripts + "\\Carma_Tools\\lib"
 --scriptpath = "C:\\Users\\909754\\Google Drive\\Carmatools 2020\\CT_libraries"
 --scriptpath = "C:\\Users\\harms\\Google Drive\\Carmatools 2020\\CT_libraries"
-fileIn (scriptpath+"\\CT_CustomAttributes.ms")
-fileIn (scriptpath+"\\MATLib.ms")
-fileIn (scriptpath+"\\DATLib.ms")
-fileIn (scriptpath+"\\ACTLib.ms")
-filein (scriptPath+"\\CT_carCustomAttributes.ms")
-filein (scriptPath+"\\CT_TrackCustomAttributes.ms")
+fileIn ( scriptpath + "\\CT_CustomAttributes.ms" )
+fileIn ( scriptpath + "\\MATLib.ms" )
+fileIn ( scriptpath + "\\DATLib.ms" )
+fileIn ( scriptpath + "\\ACTLib.ms" )
+filein ( scriptPath + "\\CT_carCustomAttributes.ms" )
+filein ( scriptPath + "\\CT_TrackCustomAttributes.ms" )
 
 
 try destroydialog CT_exporter catch()
@@ -57,7 +57,7 @@ rollout CT_exporter "Carmatools Exporter" (
 	button setFile "Export Scene" width:150 height:30
 	group "Options:" (
 		label carmaVersionLabel "Version:" across:2
-		radiobuttons carmaVersion ""	labels:#("C1","C2") tooltip:"Choose your game version" default:2 columns:2 width:100 align:#left
+		radiobuttons carmaVersion ""	labels:#( "C1", "C2" ) tooltip:"Choose your game version" default:2 columns:2 width:100 align:#left
 	)
 	group "Quick exports:" (
 		button matOnly "mat file only" width:130 height:18 align:#right
@@ -73,13 +73,13 @@ rollout CT_exporter "Carmatools Exporter" (
 			filePath = getfilenamepath sdfFileName
 			fileName = getfilenamefile sdfFileName
 			
-			actFileName = filePath+fileName+".ACT"
+			actFileName = filePath + fileName + ".ACT"
 			models = exportAct actFileName
 			
-			datFileName = filePath+fileName+".DAT"
+			datFileName = filePath + fileName + ".DAT"
 			modelMaterials = exportDat models datFileName
 			
-			matFileName = filePath+fileName+".MAT"
+			matFileName = filePath + fileName + ".MAT"
 			exportMat modelMaterials matFileName carmaVersion.state
 		)
 	)

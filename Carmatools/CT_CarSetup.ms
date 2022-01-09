@@ -36,7 +36,7 @@ custAttributes.add rootnode carGeneralAttributes
 	rollout carSetup "Carmatools - Car Setup"
 	(
 		local bmargin = 100
-		dotNetControl dn_tabs "System.Windows.Forms.TabControl" height:48 width:( carSetup.width -8 ) offset:[-10, 0] --align:#center 
+		dotNetControl dn_tabs "System.Windows.Forms.TabControl" height:48 width:( carSetup.width - 8 ) offset:[-10, 0] --align:#center 
 		subRollout theSubRollout width:( carSetup.width - 20 ) height:( carSetup.height - 100 ) align:#center
 		button export_wamtxt "Export WAM file" width:widthB height:30 pos:( theSubRollout.pos + [140, ( theSubRollout.height + 6 )] )
 		button export_cartxt "Export TXT file" width:widthB height:30 pos:( theSubRollout.pos + [260, ( theSubRollout.height + 6 )] )
@@ -70,7 +70,7 @@ custAttributes.add rootnode carGeneralAttributes
 		on carSetup open do (
 			dn_tabs.Multiline = true
 			dn_tabs.SizeMode = ( dotNetclass "System.Windows.Forms.TabSizeMode" ).FillToRight
-			dn_tabs.ItemSize = dotNetObject "System.Drawing.Size" ( ( dn_tabs.width -3 ) / 4 ) 20
+			dn_tabs.ItemSize = dotNetObject "System.Drawing.Size" ( ( dn_tabs.width - 3 ) / 4 ) 20
 			for aTab in testTabs_Rollouts do (
 				dn_tabs.TabPages.add aTab
 			)

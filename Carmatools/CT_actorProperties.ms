@@ -1,5 +1,4 @@
-global actorAttributes = attributes actorProperties
-attribID:#(0xaf709ca, 0x84ff0730)
+global actorAttributes = attributes actorProperties attribID:#( 0xaf709ca, 0x84ff0730 )
 (
 	parameters actorParameters rollout:actorPropertiesRollout
 	(
@@ -9,7 +8,7 @@ attribID:#(0xaf709ca, 0x84ff0730)
 	)
 	rollout actorPropertiesRollout "Actor Properties:"
 	(
-		dropdownlist renderMode "Actor render mode:" items:#("invisible","vertices","wireframe","normal","bbox vertices","bbox edges","bbox") selection:4 align:#right label:false tooltip:"Change the mode of the animation."
+		dropdownlist renderMode "Actor render mode:" items:#( "invisible", "vertices", "wireframe", "normal", "bbox vertices", "bbox edges", "bbox" ) selection:4 align:#right label:false tooltip:"Change the mode of the animation."
 		label modelNameLabel "Actor model name:"
 		edittext modelName ""
 		label materialNameLabel "Actor material name:"
