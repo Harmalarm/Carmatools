@@ -157,13 +157,27 @@ function buildMaterial mat = (
 				)
 				
 				matrix = mat.matrix
-				m.diffusemap.coords.u_tiling = matrix.scalepart[1]
-				m.diffusemap.coords.v_tiling = matrix.scalepart[2]
-				m.diffusemap.coords.U_Angle = (matrix as EulerAngles).x
-				m.diffusemap.coords.V_Angle = (matrix as EulerAngles).y
-				m.diffusemap.coords.W_Angle = (matrix as EulerAngles).z
-				m.diffusemap.coords.u_offset = matrix.translationpart[1]
-				m.diffusemap.coords.u_offset = matrix.translationpart[2]
+				
+				uTiling = matrix.scalepart[1]
+				vTiling = matrix.scalepart[2]
+				uAngle = (matrix as EulerAngles).x
+				vAngle = (matrix as EulerAngles).y
+				wAngle = (matrix as EulerAngles).z
+				uOffset = matrix.translationpart[1]
+				vOffset = matrix.translationpart[2]
+				
+				--correct offsets and rotation
+				uOffset = uOffset + (-(0.5 + (1.0/(uTiling * 2))))
+				vOffset = vOffset + (-(0.5 + (1.0/(vTiling * 2))))
+				wAngle = -wAngle
+					
+				m.diffusemap.coords.u_tiling = uTiling
+				m.diffusemap.coords.v_tiling = vTiling
+				m.diffusemap.coords.U_Angle = uAngle
+				m.diffusemap.coords.V_Angle = vAngle
+				m.diffusemap.coords.W_Angle = wAngle
+				m.diffusemap.coords.u_offset = uOffset
+				m.diffusemap.coords.u_offset = vOffset
 				showTextureMap m m.diffuseMap on
 			)
 			catch (
@@ -284,12 +298,25 @@ function exportMAT materials matFileName version = (
 				--write material translation matrix
 				if m.diffusemap != undefined then
 				(
+					uTiling = m.diffusemap.coords.u_tiling
+					vTiling = m.diffusemap.coords.v_tiling
+					uAngle = m.diffusemap.coords.U_Angle
+					vAngle = m.diffusemap.coords.V_Angle
+					wAngle = m.diffusemap.coords.W_Angle
+					uOffset = m.diffusemap.coords.u_offset
+					vOffset = m.diffusemap.coords.u_offset
+					
+					--correct offsets and rotation
+					uOffset = uOffset - (-(0.5 + (1.0/(uTiling * 2))))
+					vOffset = vOffset - (-(0.5 + (1.0/(vTiling * 2))))
+					wAngle = -wAngle
+					
 					matrix = matrix3 1
-					mscale = [m.diffusemap.coords.u_tiling,m.diffusemap.coords.v_tiling,0]
+					mscale = [uTiling,vTiling,0]
 					prescale matrix mscale
-					mrot = (eulerAngles m.diffusemap.coords.U_Angle m.diffusemap.coords.V_Angle m.diffusemap.coords.W_Angle)
+					mrot = (eulerAngles uAngle vAngle wAngle)
 					prerotate matrix mrot
-					mtrans = [m.diffusemap.coords.u_offset,m.diffusemap.coords.v_offset,0]
+					mtrans = [uOffset,vOffset,0]
 					pretranslate matrix mtrans
 					
 					fwritefloat f matrix.row1.x
