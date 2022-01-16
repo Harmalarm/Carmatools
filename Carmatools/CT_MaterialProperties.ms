@@ -72,9 +72,6 @@ attribID:#( 0x3304c755, 0x6a003698 )
 			colorpicker mat_fog_color "fog color: " color:( color 128 128 128 ) align:#right
 		)
 		
-		--on mat_ambient changed val do mat_ambient_entry.text = val as string
-		--on mat_directional changed val do mat_directional_entry.text = val as string
-		--on mat_specular changed val do mat_specular_entry.text = val as string
 		on mat_ambient_entry changed val do try mat_ambient = val as float catch 0.1
 		on mat_directional_entry changed val do try mat_directional = val as float catch 0.7
 		on mat_specular_entry changed val do try mat_specular = val as float catch 0
